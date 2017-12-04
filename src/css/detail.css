@@ -1,0 +1,769 @@
+body{
+	background: #f1eded
+}
+.swiper-pagination-bullet{
+	width: 0.1rem;
+	height: 0.1rem;
+	background: transparent;
+	border:1px solid #fff;
+	opacity: 1;
+	
+}
+.swiper-pagination-bullet-active{
+	background: #fff
+}
+.swiper-slide img{
+	width: 100%;
+	height: 3rem
+}
+.swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet{
+	margin:0 0.05rem;
+}
+.container>div>h2{
+	text-align: center;
+	font-size: 0.36rem;
+    line-height: 0.8rem;
+	font-weight: normal;
+}
+.container>div>h2>b{
+	float: left;
+	width: 0.24rem;
+	height: 0.4rem;
+	background: url("../images/icon_list.png") no-repeat 0 -45px;
+	margin-top:0.24rem;
+}
+.introduce{
+	padding: 0.1rem 0.15rem 0;
+	font-size: 0.25rem;
+}
+.introduce p:last-child{
+	line-height: 0.6rem
+}
+.introduce span{
+	color: #fe0202
+}
+
+.evaluate{
+	margin: 0.09rem 0;
+	padding: 0.2rem;
+}
+.well{
+	background: #fff
+}
+.well img{
+	/*height: 1.5rem;*/
+	/*width: 1.5rem;*/
+}
+.evaluate>h3{
+	font-size: 0.3rem;
+	line-height: 0.6rem
+}
+.evaluate li p:first-child{
+	color:#fa8405;
+	font-size: 0.3rem;
+	line-height: 0.6rem
+}
+.evaluate li i{
+	display: inline-block;
+	width: 0.3rem;
+	height: 0.3rem;
+	background: #626262;
+	border-radius: 50%;
+	vertical-align: middle;
+	margin-right: 0.1rem;
+}
+.evaluate .time{
+	font-size: 0.1rem;
+	color: #999999;
+	line-height: 0.25rem
+}
+.evaluate li{
+	font-size: 0.25rem;
+	margin-bottom: 0.1rem;
+}
+.evaluate>p{
+	text-align: center;
+	margin:0.1rem 0 0;
+}
+.evaluate>p a{
+	display: inline-block;
+	border:1px solid #f19149;
+	color: #f19149;
+	padding: 0.05rem 0.15rem;
+	border-radius: 5px
+}
+.evaluate>p>img{
+	/*display: inline-block;*/
+	width: 0.4rem;
+}
+
+footer{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	font-size: 0.25rem;
+	display: -webkit-flex;
+    display: flex;
+    /*padding: 0.1rem;*/
+    justify-content: space-between;
+    border-top:1px solid #f1eded;
+    box-sizing: border-box;
+    /*height: 0.8rem*/
+}
+footer a{
+	color: #fff;
+	display: inline-block;
+	border-radius: 3px;
+	padding: 0.05rem 0.2rem;
+	background: #fcad02;
+	line-height: 0.5rem;
+}
+footer a img{
+	height: 100%
+}
+footer a:first-child{
+	background: transparent;
+}
+footer a:last-child{
+	background: #e60012
+}
+.infoDetail{
+	margin-top: 0.09rem;
+	background: #fff
+}
+
+.infoDetail img{
+	width: 95%;
+	display: block;
+	margin:0.05rem auto 0;
+}
+.infoDetail:before{
+	content: "";
+	display: table;
+}
+.container{
+	padding-bottom: 0.6rem
+}
+
+.outer{
+	background: #fcfbfb
+}
+.orange{
+	color: #fcad02
+}
+.blue{
+	color:#3473d1;
+}
+.outer dl{
+	display: -webkit-flex;
+    display: flex;
+	width: 100%;
+	padding: 0.15rem;
+	box-sizing: border-box;
+	margin-top:0.1rem;
+}
+.outer dl p{
+	padding: 0 0.1rem;
+	line-height: 0.4rem
+}
+.outer dl img{
+	height: 1rem
+}
+.logistics_detail dl{
+	padding-bottom: 0;
+	padding-top: 0.1rem;
+	line-height: 0.2rem
+}
+.logistics_detail dd{
+	width: 15%;
+	line-height: 0.4rem
+}
+.logistics_detail dt{
+	width: 85%
+}
+
+.tab{
+	overflow: hidden;
+	background: #fff;
+}
+.tab li{
+	float: left;
+	width: 20%;
+	text-align: center;
+	line-height: 0.5rem
+}
+.tab li a{
+	display: inline-block;
+}
+.tab li.active a{
+	border-bottom: 1px solid #ff3346;
+	color: #ff3346
+}
+.index_list{
+	overflow: hidden;
+}
+.index_list li{
+	width: 49%;
+	float: left;
+	background: #fff;
+	margin-top:0.05rem;
+}
+.index_list li:nth-child(2n-1){
+	margin-right: 2%
+}
+.index_list li img{
+	width:93%;
+	height: 95%;
+	/*height: 100%*/
+}
+.index_list li dd{
+	height: 2rem;
+    text-align: center;
+    overflow: hidden;
+}
+.index_list .introduce p:first-child{
+	overflow : hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+.well dl{
+	width: 50%;
+	text-align: center;
+}
+.well dl img{
+	width: 0.4rem
+}
+.order_list{
+	margin-top:0.01rem;
+}
+.order_list li{
+	background: #fcfbfb;
+	border-bottom:1px solid  #bfbebe;
+	padding-right: 0.01rem
+}
+.order_list li dl{
+	overflow: hidden;
+}
+.order_list li dd,.order_list li dt{
+	float: left;
+}
+.order_list li dd{
+	width: 40%;
+}
+.order_list li dt{
+	margin-right: 0.1rem;
+	width: 55%;
+	color:#2c2c2c;
+	padding-top: 0.08rem;
+}
+.order_list li dd>img{
+	width: 65%
+}
+.order_list li dd img{
+	margin:0.15rem 0.02rem;
+	vertical-align: middle;
+}
+.order_list .introduce{
+	padding: 0.05rem 0 0;
+}
+.order_list li dt>p{
+	border-bottom: 1px solid #e0e0e0;
+	line-height: 0.5rem;
+	font-size: 0.25rem
+}
+.order_list li dt>p span{
+	float: right;
+	margin-right: 0.1rem
+}
+.order_list .introduce p:first-child{
+	font-size: 0.2rem;
+	overflow : hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+.order_list .introduce p span:last-child{
+	float: right;
+    margin-right: 0.1rem;
+    color: #2c2c2c;
+}
+.order_list li dt>p:last-child{
+	text-align: right;
+}
+.order_list li dt>p a{
+	display: inline-block;
+	padding: 0 0.2rem;
+	border:1px solid #9d9d9d;
+	color: #2c2c2c;
+	margin: 0.1rem;
+	background: #fff
+}
+.container>div>h2>a{
+	float: right;
+	margin-right: 0.1rem
+}
+.order_list li dd span{
+	display: inline-block;
+	margin: 0 0.05rem
+}
+.order_list li dd span img{
+	width: 0.3rem
+}
+.shopcar{
+	line-height: 0.8rem;
+	/*font-size: 0.17rem;*/
+	padding-left: 0.2rem
+}
+.shopcar img{
+	vertical-align: middle;
+	width: 0.25rem;
+	margin-right: 0.05rem;
+	position: relative;
+    top: -0.033rem;
+}
+.shopcar>a{
+	padding-right: 0.2rem;
+    padding-left: 0.2rem;
+    /* line-height: 0.2rem; */
+    height: 0.5rem;
+    margin-top: 0.1rem;
+}
+.shopcar .red,.red{
+	color: #ff3434
+}
+.addAdd{
+	width: 100%;
+	text-align: center;
+	/*font-size: 0.2rem;*/
+	color: #2c2c2c;
+	line-height: 0.6rem
+}
+.addAdd img{
+	height: 0.25rem;
+	vertical-align: baseline;
+}
+.add_List{
+	/*font-size: 0.15rem;*/
+	color: #2c2c2c
+}
+.add_List dt,.add_List dd{
+	border-bottom: 1px solid #dbdbdb;
+	padding: 0 0.1rem;
+	line-height: 0.6rem
+}
+.add_List dd{
+	border:none
+}
+.add_List dd span,.add_List dt b{
+	margin-right: 0.1rem;
+	float: right;
+}
+.add_List dt img{
+	height: 0.3rem;
+    vertical-align: text-bottom;
+}
+.well>img{
+	float: left;
+    width: 0.25rem;
+    margin-top: 0.13rem;
+    margin-left: 0.1rem;
+}
+.btn-block{
+	display: block;
+	width: 90%;
+	margin: 0 auto;
+	font-size: 0.15rem;
+	padding: 0.05rem;
+	border-radius: 5px;
+	margin-top: 0.25rem
+}
+.btn-info{
+	background: #3473d1;
+	color: #fff;
+	
+}
+.addAddIcon{
+	line-height: 0.4rem;
+}
+.addAddIcon img:first-child{
+	height: 1em;vertical-align: middle;margin: 0 0.8em;
+}
+.addAddIcon img:last-child{
+	float: right;height: 1em;margin: 0.12rem 0.1rem;
+}
+
+
+.order_detail{
+	padding: 0 0.2rem
+}
+.order_detail>ul li{
+	padding: 0.2rem 0;
+	border-bottom: 1px solid #eee;
+}
+.order_detail>ul li:last-child{
+	border-bottom: 0
+}
+.order_detail img{
+	height: 0.25rem;
+}
+.order_detail>ul li:first-child img{
+	margin-right: 0.1rem
+}
+.order_detail>ul li p{
+	/*display: inline-block;
+	width: 77%;*/
+	vertical-align: middle;
+}
+.order_detail>ul li span{
+	display: inline-block;
+	width: 23%;
+	/*text-align: center;*/
+}
+.order_detail dt,.order_detail dd{
+	display: inline-block;
+}
+.order_detail dd{
+	width: 20%
+}
+.order_detail dt{
+	width: 77%
+}
+.order_detail input{
+	width: 49%;
+	text-align: center;
+}
+.leaveWord{
+	padding: 0.2rem
+}
+.leaveWord input{
+	margin-left: 0.1rem
+}
+.totel li{
+	padding: 0.2rem;
+    border-bottom: 1px solid #eee;
+}
+.totel li:last-child{
+	border-bottom: 0
+}
+.totel li span{
+	float: right;
+}
+
+.addNewAdd{
+	padding: 0 0.2rem;
+	/*font-size: 0.15rem*/
+}
+.addNewAdd li{
+	padding-top: 0.1rem;
+	border-bottom: 0.1px solid #eee;
+	line-height: 0.6rem
+}
+.addNewAdd li select{
+	/*border: 0;
+	width: 33%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;*/
+	/*font-size: 0.15rem*/
+}
+.addNewAdd li select:focus{
+	/*outline: 0*/
+}
+.addNewAdd li option{
+	width: 33%
+}
+.addNewAdd li input{
+	font-size: 0.25rem;
+	margin-left: 0.1rem;
+	width: 70%
+}
+.addNewAdd p{
+	padding: 0.25rem 0
+}
+.addNewAdd p img{
+	float: right;
+	height: 0.25rem;
+}
+
+.pay01{
+	background: #fcfbfb;
+	margin-top: 0.05rem;
+	padding: 0.1rem;
+	font-size: 0.25rem;
+	line-height: 0.5rem
+}
+.pay01 input{
+	font-size: 0.15rem;
+	margin-left: 0.1rem
+}
+.pay01 li{
+	border-bottom: 1px solid #eee
+}
+.pay01 a{
+	color: #3473d1
+}
+.remember img{
+	height: 0.15rem;
+	margin: 0.1rem;
+	vertical-align: middle;
+}
+
+.zhezhao{
+	position: fixed;
+	background: rgba(0,0,0,0.7);
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	/*display: none;*/
+	z-index: 100
+}
+.tanchuang{
+	background: #fff;
+	width: 70%;
+	height: 3rem;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+}
+.tanchuang>p{
+	font-size: 0.3rem;
+    text-align: center;
+    line-height: 0.7rem;
+    border-bottom: 1px solid #eee;
+}
+.tanchuang li{
+	padding: 0 0.1rem;
+	line-height: 0.6rem;
+	border-bottom: 1px solid #111
+}
+.tanchuang li img{
+	vertical-align: middle;
+	height: 0.15rem
+}
+.tanchuang li img:first-child{
+	margin-right: 0.1rem 
+}
+.tanchuang li img:last-child{
+	float: right;
+	margin-top: 0.1rem;
+}
+.rate{
+	position: relative;
+	background: #fcfbfb;
+	margin-bottom:0.1rem
+}
+.rate>div{
+	min-height: 5rem;
+    padding: 0.1rem;
+    font-size: 0.25rem;
+	
+}
+.rate>div:focus{
+	outline: 0
+}
+.rate>p{
+	position: absolute;
+	top: 0.1rem;
+	left: 0.1rem;
+}
+.rate>img{
+	position: absolute;
+    bottom: 0.1rem;
+    left: 0.1rem;
+    height: 0.3rem;
+
+}
+.btn-danger{
+	background: #e60012;
+	color: #fff
+}
+.btn{
+	padding: 0.09rem 0.2rem;
+	font-size: 0.25rem;
+	border-radius: 5px
+}
+.text-center{
+	text-align: center;
+}
+.pull-right{
+	float: right;
+}
+
+.tanchu{
+	position: fixed;
+	bottom: 0;
+	background: #fff;
+	min-height: 2rem;
+	width: 100%
+}
+.tanchu>img{
+	position: absolute;
+	right: 0.2rem;
+	top: 0.2rem;
+	height: 0.3rem
+}
+.tanchu>dl>dd,.tanchu>dl>dt{
+	display: inline-block;
+}
+.tanchu>dl>dd{
+	width: 2.5rem;
+	/*vertical-align: middle;*/
+}
+.tanchu>dl>dd div{
+	padding: 0.1rem;
+    border: 1px solid #eee;
+    border-radius: 7px;
+    margin: -0.2rem 0.2rem 0;
+    background: #fff;
+}
+.tanchu>dl>dd img{
+	width: 100%
+}
+.tanchu>dl>dt p{
+	line-height: 0.4rem
+}
+.tanchu>dl>dt{
+	position: relative;
+    top: -0.3rem;
+}
+.tanchu>dl>dt p:first-child{
+	font-size: 0.3rem;
+    font-weight: 600;
+}
+.tanchu>ul{
+	min-height: 3rem;
+	max-height: 6rem;
+	overflow: auto;
+}
+.tanchu>ul>li{
+	border-bottom: 1px solid #eee;
+	padding: 0.2rem;
+}
+.tanchu>ul>li div{
+	
+}
+.tanchu>ul>li div>p:first-child{
+	line-height: 0.6rem;
+    /* font-size: 0.26rem; */
+    color: #000;
+}
+.tanchu>ul>li div>p span{
+	display: inline-block;
+    background: #eee;
+    padding: 0.1rem 0.2rem;
+    margin-right: 0.1rem;
+    border-radius: 0.1rem;
+}
+.tanchu>ul>li>.left{
+	float: right;
+}
+.tanchu>ul>li>span input{
+	text-align: center;
+    width: 3em;
+}
+.tanchu>p button{
+	width: 50%;
+    padding: 0.2rem;
+    font-size: 0.3rem;
+    background: #fcad02;
+    color: #fff;
+    border: 0;
+}
+.tanchu>p button:first-child{
+	background: #e60012;
+}
+.tanchu>ul>li label{
+	width: 20%;
+	display: inline-block;
+}
+.tanchu>ul>li>span{
+	display: inline-block;
+    width: 77%;
+    vertical-align: middle;
+}
+.tanchu>p a{
+	display: block;
+    text-align: center;
+    padding: 0.2rem;
+    color: #fff;
+    background: #ea964e;
+}
+
+
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in below version 2.1.8 */ {
+  opacity: 0
+}
+.container>h2>a {
+    float: right;
+    font-size: 0.3rem;
+    margin-right: 0.1rem;
+}
+
+.order_list dt:nth-child(3)>div{
+    /*margin: 0.2rem 0;*/
+    width: 88%;
+    border: 1px solid #eee;
+    line-height: 0.5rem;
+    margin: 0.2rem 0;
+}
+.order_list dt:nth-child(3)>div img{
+	vertical-align: middle;
+	width: 0.36rem;
+	margin-top: 0.07rem
+}
+
+.order_list dt:nth-child(3)>div input{
+	text-align: center;
+    border: 1px solid #eee;
+    line-height: 0.3rem;
+    width: 2.2rem;
+    /*margin: 0 0.1rem;*/
+}
+.order_list dt:nth-child(3)>div span{
+	display: inline-block;
+    width: 80%;
+    overflow: hidden;
+    height: 0.4rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-left: 0.1rem;
+    vertical-align: middle;
+}
+.order_list dt:nth-child(3)>div .right{
+	/*margin-top: 0.15rem;*/
+    margin-right: 0.1rem;
+    /*height: 0.2rem;*/
+}
+.order_list dt:nth-child(3)>div:first-child{
+	border: 0
+}
+.right{
+	float: right;
+}
+.left{
+	float: left;
+}
+
+.add_List dt:nth-child(2){
+    overflow: hidden;
+    height: 0.6rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+}
+
+.tanchu>ul>li div>p span.active{
+	background: #e60012;
+    color: #fff;
+}

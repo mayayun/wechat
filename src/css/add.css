@@ -1,0 +1,18 @@
+html,body{
+	background: #fff
+}
+.margin{
+	background: #f1eded;
+	height: 0.05rem
+}
+
+.addAddIcon{
+	line-height: 0.8rem;
+}
+.addAddIcon img:first-child{
+	height: 1em;vertical-align: middle;margin: 0 0.8em;
+}
+.addAddIcon img:last-child{
+	float: right;height: 1em;
+	margin: 0.22rem 0.1rem;
+}
