@@ -14,6 +14,7 @@ import ThankRate from '@/components/thankRate'
 import BranchList from '@/components/branchList'
 import Logistics from '@/components/logistics'
 import Pull from '@/components/pull'
+import Order_detail from '@/components/order_detail'
 
 
 // import VDistpicker from 'v-distpicker'
@@ -24,6 +25,15 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
+    { 
+      path: '/order_detail/:id',
+      name: 'Order_detail',
+      component: Order_detail,
+      meta:{
+        title:'订单详情' // 标题设置在这里
+      }
+
+    },
     {
       path: '/index/:id',
       name: 'Index',
@@ -46,18 +56,21 @@ export default new Router({
       name: 'ProductDetail',
       component: ProductDetail,
       meta:{
-        title:'商品详情' // 标题设置在这里
+        title:'商品详情' 
       }
     },
     {
-      path: '/test',
+      path: '/test/:id',
       name: 'test',
       component: test
     },
     {
       path: '/shopcar',
       name: 'Shopcar',
-      component: Shopcar
+      component: Shopcar,
+      meta:{
+        title:'购物车' 
+      }
     },
     {
       path: '/order',
@@ -73,7 +86,7 @@ export default new Router({
       component: Addr
     },
     {
-      path: '/addNewAdd',
+      path: '/addNewAdd/:id',
       name: 'AddNewAddr',
       component: AddNewAddr
     },

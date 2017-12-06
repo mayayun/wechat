@@ -185,19 +185,19 @@
       },
       showSpec(){
         if(arguments.length != 0){
-          if(this.product.check_format === undefined){
-            alert("请选择商品属性！");
-            return;
-          }
+          
           this.shopcar = true;
         }else{
           this.shopcar = false;
         }
         if(arguments[0]==1){
-
+          if(this.product_detail.check_format === undefined){
+            alert("请选择商品属性！");
+            return;
+          }
           var self = this;
           this.product.commodityFormat = this.product_detail.check_format.id;
-          this.$http.post(`http://114.215.220.241/WeChat/shoppingCarts/`,this.product,{headers:{"token":"2dB0CCdWHlyNHPMFGbje8tW9ru5C8iTe"}})
+          this.$http.post(`http://114.215.220.241/WeChat/shoppingCarts/`,this.product,{headers:{"token":sessionStorage.getItem("token")}})
              .then(res =>{
                 self.shop_success = true;
           
@@ -213,6 +213,9 @@
       productParam(){
         this.isZhezhao= !this.isZhezhao;
         this.product_param= !this.product_param;
+        if(this.product_param==true){
+          
+        }
       },
       choose_formate (index) {
         var self = this;
@@ -223,7 +226,7 @@
         var p = this.product_detail.formats[index];
         Vue.set(this.product_detail.formats,index,p)
         this.product_detail.check_format = this.product_detail.formats[index];
-        
+        console.log(this.product_detail.check_format);
         // console.log(this.product_detail.check_format==undefined);
       },
       changeNum(key){
@@ -265,5 +268,11 @@
     padding: 0.1rem 0.2rem;
     border-radius: 43%;
     left: 29%;
+  }
+  footer a img{
+    height: 0.5rem
+  }
+  footer{
+    padding: 0.1rem
   }
 </style>

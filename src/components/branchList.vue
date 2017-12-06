@@ -36,7 +36,10 @@
 			    	console.log(res);
 			    	//openid = res.data.openid;
 					self.$http.post(`http://114.215.220.241/WeChat/customers/login/`,{openid:res.data.openid})
-						 .then(res =>{sessionStrage.setItem(res.data.token)})
+						 .then(res =>{
+						 	//alert(res.data.token);
+						 	sessionStorage.setItem("token",res.data.token)
+						 })
 			  		}
 				)
 		}

@@ -3,17 +3,19 @@
 		<div class='container'>
 			<h2 class='well'><img src='../images/back.png' style='' alt=''>地址管理<a href='javascript:void(0)' v-on:click='editable = !editable'>{{!editable?'管理':'修改'}}</a></h2>
 			<p class='margin'></p>
-			<ul class='add_List'>
+			<ul class='add_List' v-if="list.length>0">
 				<li v-for='(p,key) in list'>
-					<dl>
-						<dd>{{p.name}}<span>{{p.phone}}</span></dd>
-						<dt><span v-if='p.isdefault&&!editable'>(默认地址)</span>{{p.addr}}</dt>
-						<dt v-if='editable'><img v-show='p.isdefault&&editable' src='../images/choose.png' alt=''><img v-on:click='chooseDefault(key)' v-show='!p.isdefault&&editable' src='../images/unchoose.png' alt=''><span>设置为默认地址</span><a v-on:click='dele(key)' href='javascript:void(0)' class='right'>删除</a> <a class='right' href='#' style='margin: 0 0.1rem;'>编辑</a></dt>
+					<dl v-on:click="choose_add(p.id)">
+						<dd>{{p.receiver}}<span>{{p.phone}}</span></dd>
+						<dt><span >(默认地址)</span>{{p.address}}</dt>
+						<!-- -if='p.isdefault&&!editable' -->
+						<dt v-if='editable'><img v-show='p.isdefault&&editable' src='../images/choose.png' alt=''><img v-on:click='chooseDefault(key)' v-show='!p.isdefault&&editable' src='../images/unchoose.png' alt=''><span>设置为默认地址</span><a v-on:click='dele(key)' href='javascript:void(0)' class='right'>删除</a> <router-link class='right' :to='{ name: "AddNewAddr", params: { id: p.id}}' style='margin: 0 0.1rem;'>编辑</router-link></dt>
 					</dl>
 				</li>
 			</ul>
+			<div v-else>还没有添加地址</div>
 			<footer class='well' v-show='editable'>
-				<p class='addAdd'><router-link to='/addNewAdd'><img src='../images/add01.png' alt=''>新增地址</router-link></p>
+				<p class='addAdd'><router-link to='/addNewAdd/-1'><img src='../images/add01.png' alt=''>新增地址</router-link></p>
 			</footer>
 		</div>
 	</div>
@@ -24,29 +26,7 @@
 		data () {
 			return {
 				editable:false,
-				list: [
-					{
-						name: 'name1',
-						phone: '13224500908',
-						addr: '地址1地址1地址1地址1地址1地址1地址1地址1地址1',
-						editable: false,
-						isdefault: true
-					},
-					{
-						name: 'name2',
-						phone: '13224500908',
-						addr: '地址2地址1地址1地址1地址1地址1地址1地址1地址1',
-						editable: false,
-						isdefault: false
-					},
-					{
-						name: 'name3',
-						phone: '13224500908',
-						addr: '地址3地址1地址1地址1地址1地址1地址1地址1地址1',
-						editable: false,
-						isdefault: false
-					}
-				]
+				list: []
 			}
 		},
 		methods: {
@@ -57,8 +37,28 @@
 				this.list[index].isdefault = true
 			},
 			dele(index){
-				this.list.splice(index,1)
+				var self = this;
+				this.$http.delete(`http://114.215.220.241/WeChat/customerAddresses/${self.list[index].id}/`,{headers:{"token":sessionStorage.getItem("token")}}).then(
+			      req => {
+			      	self.list.splice(index,1)
+			        
+			      })
+			},
+			choose_add(id){
+				if(this.editable === false){
+					alert("ok");
+					sessionStorage.setItem("add",id);
+					this.$router.replace("/order")
+				}
 			}
+		},
+		mounted () {
+			var self = this;
+			this.$http.get(`http://114.215.220.241/WeChat/customerAddresses/`,{headers:{"token":sessionStorage.getItem("token")}}).then(
+		      req => {
+		      	self.list = req.data.results
+		        
+		      })
 		}
 	}
 </script>

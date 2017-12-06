@@ -262,8 +262,10 @@ footer a:last-child{
 	width: 65%
 }
 .order_list li dd img{
-	margin:0.15rem 0.02rem;
-	vertical-align: middle;
+	margin: 0.25rem 0.2rem;
+    vertical-align: middle;
+    width: 84%;
+    height: 1.7rem;
 }
 .order_list .introduce{
 	padding: 0.05rem 0 0;
@@ -545,7 +547,7 @@ footer a:last-child{
 }
 .tanchuang li img{
 	vertical-align: middle;
-	height: 0.15rem
+	height: 0.3rem
 }
 .tanchuang li img:first-child{
 	margin-right: 0.1rem 
@@ -766,4 +768,21 @@ footer a:last-child{
 .tanchu>ul>li div>p span.active{
 	background: #e60012;
     color: #fff;
+}
+
+.addAddIcon ul{
+	display: inline-block;
+    width: 80%;
+    vertical-align: middle;
+    line-height: 0.5rem;
+}
+.addAddIcon ul li{
+	overflow: hidden;
+    height: 0.5rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.stop_scroll{
+	height: 100%;
+	overflow: hidden;
 }

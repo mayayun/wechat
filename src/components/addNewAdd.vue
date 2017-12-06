@@ -1,7 +1,7 @@
 <template>
 	<div class='hello'>
 		<div class='container'>
-			<h2 class='well'><img  src='../images/back.png'  alt=''>新增地址<a  v-on:click="create()">完成</a></h2>
+			<h2 class='well'><img  src='../images/back.png'  alt=''>{{id==-1?'新增':"修改"}}地址<a  v-on:click="create()">完成</a></h2>
 			<p class='margin'></p>
 			<div class='addNewAdd'>
 				<ul>
@@ -35,7 +35,8 @@
 	              area: '--- 区 ---',
 		        },
 		        select: { province: '广东省', city: '广州市', area: '海珠区' },
-		        add: {customer:3}
+		        add: {customer:3},
+		        id : -1
 			}
 		},
 		watch: {
@@ -49,10 +50,32 @@
 		methods: {
 			create () {
 				var self = this;
-			    this.$http.post(`http://114.215.220.241/WeChat/customerAddresses/`,this.add,{headers:{"token":"9oE3eUwxc3rrLvzDliYxfpR0m23Sq+R2"}}).then(res => {
+				if(this.$route.params.id != -1){
+					this.$http.put(`http://114.215.220.241/WeChat/customerAddresses/${this.$route.params.id}/`,this.add,{headers:{"token":sessionStorage.getItem("token")}}).then(res => {
+				      //  this.chapterCatelog = res.data.titles.split('-')
+				      console.log(res.data.results); 
+				      self.$router.replace('/addr');
+				    })
+				}else{
+					this.$http.post(`http://114.215.220.241/WeChat/customerAddresses/`,this.add,{headers:{"token":sessionStorage.getItem("token")}}).then(res => {
+				      //  this.chapterCatelog = res.data.titles.split('-')
+				      console.log(res.data.results); 
+				      self.$router.replace('/addr');
+				    })
+				}
+				
+			    
+			}
+		},
+		mounted () {
+			var self = this;
+			if(this.$route.params.id != -1){
+				this.id = this.$route.params.id ;
+				this.$http.get(`http://114.215.220.241/WeChat/customerAddresses/${this.$route.params.id}/`,{headers:{"token":sessionStorage.getItem("token")}}).then(res => {
 			      //  this.chapterCatelog = res.data.titles.split('-')
 			      console.log(res.data.results); 
-			      self.$router.replace('/addr');
+			      self.add = res.data;
+			      
 			    })
 			}
 		}
