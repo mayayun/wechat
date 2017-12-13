@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '@/components/index'
 import ProductDetail from '@/components/ProductDetail'
-import test from '@/components/test'
+import test from '@/components/test11'
 import Shopcar from '@/components/shopcar'
 import Order from '@/components/order'
 import Addr from '@/components/add'
@@ -26,7 +26,7 @@ Vue.use(Router)
 export default new Router({
   routes: [
     { 
-      path: '/order_detail/:id',
+      path: '/order_detail/:id/:hotel_id/:customer_id',
       name: 'Order_detail',
       component: Order_detail,
       meta:{
@@ -35,7 +35,7 @@ export default new Router({
 
     },
     {
-      path: '/index/:id',
+      path: '/index/:id/:customer_id',
       name: 'Index',
       component: Index,
       meta:{
@@ -52,7 +52,7 @@ export default new Router({
       }
     },
     {
-      path: '/detail/:id',
+      path: '/detail/:id/:hotel_id/:customer_id',
       name: 'ProductDetail',
       component: ProductDetail,
       meta:{
@@ -60,12 +60,12 @@ export default new Router({
       }
     },
     {
-      path: '/test/:id',
-      name: 'test',
+      path: '/test11',
+      name: 'test11',
       component: test
     },
     {
-      path: '/shopcar',
+      path: '/shopcar/:hotel_id/:customer_id',
       name: 'Shopcar',
       component: Shopcar,
       meta:{
@@ -73,7 +73,7 @@ export default new Router({
       }
     },
     {
-      path: '/order',
+      path: '/order/:hotel_id/:customer_id',
       name: 'Order',
       component: Order,
       meta:{
@@ -81,22 +81,25 @@ export default new Router({
       }
     },
     {
-      path: '/addr',
+      path: '/addr/:hotel_id/:customer_id',
       name: 'Addr',
       component: Addr
     },
     {
-      path: '/addNewAdd/:id',
+      path: '/addNewAdd/:id/:hotel_id/:customer_id',
       name: 'AddNewAddr',
       component: AddNewAddr
     },
     {
-      path: '/logistics',
+      path: '/logistics/:orderNum/:hotel_id/:customer_id',
       name: 'Logistics',
-      component: Logistics
+      component: Logistics,
+      meta:{
+        title:'查看物流' // 标题设置在这里
+      }
     },
     {
-      path: '/myorder',
+      path: '/myorder/:hotel_id/:customer_id',
       name: 'Myorder',
       component: Myorder,
       meta:{
@@ -104,7 +107,7 @@ export default new Router({
       }
     },
     {
-      path: '/rate',
+      path: '/rate/:hotel_id/:customer_id',
       name: 'Rate',
       component: Rate
     },

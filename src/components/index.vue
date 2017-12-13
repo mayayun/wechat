@@ -4,14 +4,14 @@
       <div style='position:fixed;width:100%;top:0'>
         <h2 class='well'>北京宴</h2>
         <ul class='tab'>
-          <li :class='{active:active}' @click="search_by_type()"><a href='#'>全部</a></li>
+          <li :class='{active:active}' @click="search_by_type()"><a href='javascript:void(0)' >全部</a></li>
           <li :class='{active:p.isActive}' v-for="(p,index) in product_type"><a href='javascript:void(0)' v-on:click="search_by_type(p.id,index)">{{p.name}}</a></li>
         </ul>
       </div>
       
       <ul class='index_list'>
         <li v-for = '(p,index) in product_list'>
-          <router-link :to='{ name: "ProductDetail", params: { id: p.id}}'>
+          <router-link :to='{ name: "ProductDetail", params: { id: p.id,customer_id:$route.params.customer_id,hotel_id:$route.params.id}}'>
             <dl>
               <dd><img :src='p.icon_list[0]' alt=''></dd>
               <dt  class='introduce'><p>{{p.description}}</p><p><span>￥{{p.lowPrice}}</span></p></dt>
@@ -22,14 +22,14 @@
         
       </ul>
       <footer class='well'>
-        <router-link to='/shopcar'>
+        <router-link :to='{name:"Shopcar",params:{customer_id:$route.params.customer_id,hotel_id:$route.params.id}}'>
           <dl>
             <dd><img src='../images/shopcar.png' alt=''></dd>
             <dt>购物车</dt>
           </dl>
         </router-link>
         
-        <router-link to='/myorder'>
+        <router-link :to='{name:"Myorder",params:{customer_id:$route.params.customer_id,hotel_id:$route.params.id}}'>
           <dl>
             <dd><img src='../images/myorder.png' alt=''></dd>
             <dt>订单</dt>
@@ -100,7 +100,7 @@ export default {
         })
       }else{
         self.product_type[index].isActive = true;
-        self .$http.get(`http://114.215.220.241/WeChat/hotelBranchs/${this.hotel_id}/commodityTypes/${id}/commoditys/`).then(res => {
+        self .$http.get(`http://114.215.220.241/WeChat/hotelBranchs/${this.$route.params.id}/commodityTypes/${id}/commoditys/`).then(res => {
           //  this.chapterCatelog = res.data.titles.split('-')
           console.log(res.data.results);
           self.product_list = res.data.results;

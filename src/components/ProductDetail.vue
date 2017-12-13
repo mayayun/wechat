@@ -1,7 +1,7 @@
 <template>
   <div class='hello'>
     <div class='container'>
-      <h2 class='well'><img onclick='history.go(-1)' src='../images/back.png' style='' alt=''>商品详情</h2>
+      <!-- <h2 class='well'><img onclick='history.go(-1)' src='../images/back.png' style='' alt=''>商品详情</h2> -->
       <div class='well'>
         <div class='swiper-container'>
           <div class='swiper-wrapper'>
@@ -10,9 +10,9 @@
               <div class='swiper-slide'><img src='../images/banner.png' alt=''></div> -->
           </div>
           <div class='swiper-pagination'></div>
-          <div class='swiper-button-prev'></div>
-          <div class='swiper-button-next'></div>
-          <div class='swiper-scrollbar'></div>
+          <!-- <div class='swiper-button-prev'></div>
+          <div class='swiper-button-next'></div> -->
+          <!-- <div class='swiper-scrollbar'></div> -->
         </div>
         
         <div class='introduce'>
@@ -24,7 +24,7 @@
 
       <div class='evaluate well'>
         <ul>
-          <li v-on:click='showSpec()' style='line-height:0.5rem;border-bottom:1px solid #eee'>产品规格 <img style='height:0.3rem;float:right' src='../images/to.png' alt=''></li>
+          <li v-on:click='showSpec()' style='line-height:0.5rem;border-bottom:1px solid #eee'>产品规格<span v-if="product_detail.check_format!=undefined" style="display: inline-block;margin-left: 0.2rem;color: #ddd;">已选择({{product_detail.check_format.description}})</span> <img style='height:0.3rem;float:right' src='../images/to.png' alt=''></li>
           <li v-on:click='productParam()' style='line-height:0.5rem'>产品参数 <img src='../images/to.png' alt='' style='height:0.3rem;float:right'></li>
         </ul>
       </div>
@@ -48,7 +48,7 @@
         <img v-for="(p,key) in product_detail.details_list" :src='p' alt=''>
       </div>
 
-      <footer class='well'><router-link to='/shopcar'><img src='../images/shopcart.png' alt=''></router-link><a href='javascript:void(0)' v-on:click='showSpec(0)'>加入购物车</a><transition name='fade'><p v-show='shop_success'>加入购物车成功</p></transition><a href='./sure_order.html'>立即购买</a></footer>
+      <footer class='well'><router-link :to='{name:"Shopcar",params:{customer_id:$route.params.customer_id,hotel_id:$route.params.id}}'><img src='../images/shopcart.png' alt=''></router-link><a href='javascript:void(0)' v-on:click='showSpec(0)'>加入购物车</a><transition name='fade'><p v-show='shop_success'>加入购物车成功</p></transition><a v-on:click="showSpec(0,'r')">立即购买</a></footer>
     </div>
     <div class='zhezhao' v-show='isZhezhao'>
       <div class='tanchu' v-show='spec'>
@@ -74,10 +74,10 @@
             </div>
           </li>
           <li>
-            购买数量 <span class='left'><img v-on:click='changeNum("m")' src='../images/-.png' alt=''><input v-model="product.count" type='text'><img src='../images/+.png' alt='' v-on:click='changeNum("a")'></span>
+            购买数量 <span class='left'><img v-on:click='changeNum("m")' src='../images/-.png' alt=''><input v-model="product.count" type='number' @blur="p_count()"><img src='../images/+.png' alt='' v-on:click='changeNum("a")'></span>
           </li>
         </ul>
-        <p v-show='!shopcar'><button>立即购买</button><button v-on:click='showSpec(1)'>加入购物车</button></p>
+        <p v-show='!shopcar'><button v-on:click='showSpec(1,"r")'>立即购买</button><button v-on:click='showSpec(1)'>加入购物车</button></p>
         <p v-show='shopcar'><a href='javascript:void(0)' v-on:click='showSpec(1)'>确定</a></p>
       </div>
       <div class='tanchu' v-show='product_param'>
@@ -125,21 +125,24 @@
         isZhezhao: false ,
         shopcar : false,
         shop_success: false,
-        product_detail: {}
-        
+        product_detail: {},
+        right_now : false,
+        p_id:""
       }
     },
     mounted () {
       console.log(this.$route.params.id)
-      var mySwiper = new Swiper ('.swiper-container', {
-        loop: true,
-        pagination: '.swiper-pagination',
-        paginationClickable :true,
-        nextButton: '.swiper-button-next',
-        prevButton: '.swiper-button-prev',
-        // scrollbar: '.swiper-scrollbar',
-        autoplay: 3000,
-        autoplayDisableOnInteraction : false
+      new Swiper ('.swiper-container', {
+          //loop: true,
+          pagination: '.swiper-pagination',
+          paginationClickable :true,
+          //nextButton: '.swiper-button-next',
+          //prevButton: '.swiper-button-prev',
+          // scrollbar: '.swiper-scrollbar',
+          autoplay: 3000,
+          autoplayDisableOnInteraction : false, 
+          observer:true,//修改swiper自己或子元素时，自动初始化swiper
+          observeParents:true//修改swiper的父元素时，自动初始化swiper
       });
       var self = this;
       this.$http.get(`http://114.215.220.241/WeChat/commoditys/${this.$route.params.id}/`).then(res => {
@@ -170,6 +173,7 @@
         })
         //self.product_detail.defaule.image = self.product_detail.formats[0].image;
         console.log(self.product_detail);
+        
 
       })
     },
@@ -183,13 +187,38 @@
       changeClass(){
         this.more = !this.more;
       },
+      p_count() {
+        if(this.product.count == ""){
+          this.product.count = 1
+        }
+      },
       showSpec(){
         if(arguments.length != 0){
-          
+          //已选择规格，且立即购买，不需要弹窗
           this.shopcar = true;
-        }else{
+          if(arguments[1] === "r"&&this.product_detail.check_format != undefined){
+            //this.shopcar = false;
+          }else{
+            this.isZhezhao= !this.isZhezhao;
+          }
+        }else{//关闭弹出框
           this.shopcar = false;
+          this.isZhezhao= !this.isZhezhao;
         }
+        this.spec= !this.spec;
+        if(this.isZhezhao === false){
+          //判断是否为立即购买
+          if(arguments[1] === "r"){
+            this.right_now = true;
+            //判断是否已有选购的规格
+            if(this.product_detail.check_format != undefined){
+              //alert(p_id);
+              sessionStorage.setItem("p_list",this.p_id);
+              this.$router.push({name:"Order",params:{customer_id:this.$route.params.customer_id,hotel_id:this.$route.params.hotel_id}})
+            }
+          }
+        }
+        //var p_id = "";
         if(arguments[0]==1){
           if(this.product_detail.check_format === undefined){
             alert("请选择商品属性！");
@@ -200,15 +229,22 @@
           this.$http.post(`http://114.215.220.241/WeChat/shoppingCarts/`,this.product,{headers:{"token":sessionStorage.getItem("token")}})
              .then(res =>{
                 self.shop_success = true;
-          
+                self.p_id = res.data.id;
+                //alert(p_id);
+                //判断是否为立即购买
+                if(self.right_now||arguments[1] === "r"){
+                  sessionStorage.setItem("p_list",res.data.id);
+                  self.$router.push({name:"Order",params:{customer_id:this.$route.params.customer_id,hotel_id:this.$route.params.hotel_id}})
+                }
                 var timer = setTimeout(function(){
                   self.shop_success = false;
                   timer = null
                 },1000);
              })
         }
-        this.isZhezhao= !this.isZhezhao;
-        this.spec= !this.spec;
+        //this.isZhezhao= !this.isZhezhao;
+        
+        
       },
       productParam(){
         this.isZhezhao= !this.isZhezhao;

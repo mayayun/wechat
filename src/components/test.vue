@@ -53,6 +53,9 @@ export default{
               let vm = this;
               this.downdata.push({name:"bb"});
               this.downdata.push({name:"bb"});
+              this.downdata.push({name:"bb"});
+              this.downdata.push({name:"bb"});
+              this.downdata.push({name:"bb"});
               this.$el.querySelector('.load-more').style.display = 'none';
               // vm.$http.get('https://api.github.com/repos/typecho-fans/plugins/contents/').then((response) => {
               //     vm.counter++;

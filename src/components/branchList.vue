@@ -2,7 +2,7 @@
 	<div class="hello">
 		<p>请选择门店进行购物</p>
 		<ul>
-			<li v-for="(p,key) in hotel_list"><router-link :to='{ name: "Index", params: { id: p.hotel}}'>{{p.name}}</router-link></li>
+			<li v-for="(p,key) in hotel_list"><router-link :to='{ name: "Index", params: { id: p.hotel,customer_id:customer.id}}'>{{p.name}}</router-link></li>
 		</ul>
 	</div>
 </template>
@@ -10,15 +10,19 @@
 	export default{
 		data () {
 			return {
-				hotel_id:1,
-				hotel_list:[]
+				//hotel_id:1,
+				hotel_list:[],
+				customer: {}
 			}
 		},
 		mounted () {
 			var href = location.href;
-			var indexFrom = location.href.indexOf("?")+1;
+			var indexFrom = location.href.indexOf("?");
 			var indexTo = location.href.indexOf("#");
-			href = href.slice(indexFrom,indexTo);
+			var href1 = href.slice(0,indexFrom);
+
+			var hotel_id = href1.slice(href1.lastIndexOf("/")+1,);
+			href = href.slice(indexFrom+1,indexTo);
 			href = href.split("&");
 			href.forEach(function(item,key){
 				href[key] = item.split("=");
@@ -27,18 +31,18 @@
 			var code = "";
 			var state = "";
 			var self = this;
-			this.$http.get(`http://114.215.220.241/WeChat/hotels/${this.hotel_id}/allBranchs/`)
+			this.$http.get(`http://114.215.220.241/WeChat/hotels/${hotel_id}/allBranchs/`)
 								 .then(res =>{
 								 	self.hotel_list = res.data.results;
 								 })
 			this.$http.get(`http://114.215.220.241/WeChat/webAccessToken/?code=${href[0][1]}&state=${href[1][1]}`)
 			    .then(res =>{
 			    	console.log(res);
-			    	//openid = res.data.openid;
 					self.$http.post(`http://114.215.220.241/WeChat/customers/login/`,{openid:res.data.openid})
 						 .then(res =>{
-						 	//alert(res.data.token);
 						 	sessionStorage.setItem("token",res.data.token)
+						 	self.customer = res.data.customer;
+						 	//alert(self.customer.id)
 						 })
 			  		}
 				)

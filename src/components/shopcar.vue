@@ -1,16 +1,16 @@
 <template>
   <div class='hello'>
     <div class='container'>
-      <h2 class='well'><img src='../images/back.png' style='' alt=''>购物车<a href='javascript:void(0)' v-on:click='edit()'>{{!editable?'编辑':'完成'}}</a></h2>
+      <h2 class='well'><!-- <img src='../images/back.png' style='' alt=''> -->购物车<a href='javascript:void(0)' v-on:click='edit()'>{{!editable?'编辑':'完成'}}</a></h2>
       <ul  class='order_list' v-if="list.length>0">
         <li v-for='(p,key) in list'>
           <dl>
             <dd>
               <span style="height:0.25rem;width:0.25rem"><img style="height:auto" :src='p.url' alt='' v-on:click='check(key)'></span>
-              <router-link :to="{name:'ProductDetail',params:{id:p.commodityFormat.commodity}}" style="width:77%;display:inline-block"><img style="width:95%" :src='p.commodityFormat.image' alt=''></router-link>
+              <router-link :to="{name:'ProductDetail',params:{id:p.commodityFormat.commodity.id,customer_id:$route.params.customer_id,hotel_id:$route.params.hotel_id}}" style="width:77%;display:inline-block"><img style="width:95%" :src='p.commodityFormat.image' alt=''></router-link>
             </dd>
             <dt v-show='!p.editable'>
-              <router-link :to="{name:'ProductDetail',params:{id:p.commodityFormat.commodity}}" style="display:block" class='introduce'>
+              <router-link :to="{name:'ProductDetail',params:{id:p.commodityFormat.commodity.id,customer_id:$route.params.customer_id,hotel_id:$route.params.hotel_id}}" style="display:block" class='introduce'>
                <p>{{p.description}}</p>
                 <div class='introduce'>
                   <p>{{p.commodityFormat.description}}</p><p><span>￥{{p.commodityFormat.currentPrice}}</span><span>X{{p.count}}</span></p>
@@ -19,7 +19,7 @@
               
             </dt>
             <dt v-show='p.editable'>
-              <div style='text-align: center;'><img v-on:click='minus(key)' src='../images/-.png' alt='' class='left'><input type='text' v-on:change="change_shopcar(key)" v-model='p.count'><img v-on:click='add(key)'  class='right' src='../images/+.png' alt='' style='margin-right: 0'></div>
+              <div style='text-align: center;'><img v-on:click='minus(key)' src='../images/-.png' alt='' class='left'><input type='number' v-on:change="change_shopcar(key)" v-model='p.count'><img v-on:click='add(key)'  class='right' src='../images/+.png' alt='' style='margin-right: 0'></div>
               <div v-on:click='showSpec(p.commodityFormat.commodity,key)'><span>{{p.commodityFormat.description}}</span><img class='right' src='../images/dropdown.png' alt='' style='margin-top: 0.15rem'></div>
             </dt>
           </dl>
@@ -89,7 +89,7 @@ export default {
         return;
       }
       sessionStorage.setItem("p_list",p_list.toString());
-      this.$router.push({name:"Order"})
+      this.$router.push({name:"Order",params:{customer_id:this.$route.params.customer_id,hotel_id:this.$route.params.hotel_id}})
     },
     checkAll (){
       var self = this;
@@ -239,9 +239,11 @@ export default {
       this.shopcar_count(this.list[this.index].commodityFormat.id);
     },
     change_shopcar (key){
-      //alert("ok");
+      //alert(this.index);
       if(this.list[key].count<1){
         return;
+      }else if(this.list[key].count == ""){
+        this.list[key].count = 1;
       }
       this.shopcar_count(this.list[this.index].commodityFormat.id);
     },

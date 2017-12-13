@@ -54,13 +54,13 @@
 					this.$http.put(`http://114.215.220.241/WeChat/customerAddresses/${this.$route.params.id}/`,this.add,{headers:{"token":sessionStorage.getItem("token")}}).then(res => {
 				      //  this.chapterCatelog = res.data.titles.split('-')
 				      console.log(res.data.results); 
-				      self.$router.replace('/addr');
+				      self.$router.replace({name:"Addr",params:{customer_id:$route.params.customer_id,hotel_id:$route.params.hotel_id}});
 				    })
 				}else{
 					this.$http.post(`http://114.215.220.241/WeChat/customerAddresses/`,this.add,{headers:{"token":sessionStorage.getItem("token")}}).then(res => {
 				      //  this.chapterCatelog = res.data.titles.split('-')
 				      console.log(res.data.results); 
-				      self.$router.replace('/addr');
+				      self.$router.replace({name:"Addr",params:{customer_id:$route.params.customer_id,hotel_id:$route.params.hotel_id}});
 				    })
 				}
 				
